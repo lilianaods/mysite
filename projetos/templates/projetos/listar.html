@@ -94,13 +94,17 @@
             <h5 class="modal-title" id="exampleModalLabel">Cálculo de retorno do investimento</h5>
           </div>
           <div class="modal-body">
+              <div class="alert alert-danger" role="alert" style="display: none;">
+                O valor do investimento deve ser maior que o valor do projeto!
+              </div>
               <input type="hidden" value="{{ projeto.risco }}" name="risco">
+              <input type="hidden" value="{{ projeto.valor }}" name="valor">
               <label for="exampleInputEmail1">Valor total do investimento</label>
               <div class="input-group mt-1">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="basic-addon1">R$</span>
                 </div>
-                <input type="text" class="form-control" placeholder="250000,50" name="investimento" required>
+                <input type="text" class="form-control" placeholder="550" name="investimento" required>
               </div>
               <p class="mt-2 text-secondary">Por favor, clique no botão abaixo para realizar o cálculo de retorno do investimento</p>
               <button class="btn btn-primary" value="{{ projeto.valor }}" name="calcular">Calcular</button>

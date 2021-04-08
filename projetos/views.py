@@ -7,7 +7,7 @@ def index(request):
     return render(request, 'projetos/index.html')
 
 def listar(request):
-    lista_projeto = Projeto.objects.all()
+    lista_projeto = Projeto.objects.all().order_by('nome')
 
     context = {
         'lista_projeto': lista_projeto,
