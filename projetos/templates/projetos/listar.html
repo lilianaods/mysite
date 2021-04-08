@@ -15,6 +15,7 @@
     <!-- JavaScript -->
     <script src="{% static 'jquery/jquery-1.11.3.min.js' %}"></script>
     <script src="{% static 'bootstrap/js/bootstrap.bundle.js' %}"></script>
+    <script src="{% static 'projetos/js/controller_listar.js' %}"></script>
   </head>
 
   <body>
@@ -23,7 +24,7 @@
       <p class="lead">Listagem de projetos do Grupo Lorem Ipsum Inc.</p>
       <div class="d-flex justify-content-end mb-4">
         <a href="{% url 'cadastrar' %}">
-          <button type="button" class="btn btn-outline-primary" name="button">Cadastrar projeto</button>
+          <button type="button" class="btn btn-primary" name="button">Cadastrar projeto</button>
         </a>
       </div>
       <table class="table table-borderless">
@@ -54,7 +55,7 @@
                 <a href="{% url 'editar' projeto.id %}">
                   <button type="button" class="btn btn-outline-primary btn-sm">Editar</button>
                 </a>
-                <button type="button" class="btn btn-outline-primary btn-sm">Simular investimento</button>
+                <button type="button" class="btn btn-outline-primary btn-sm" onclick="$('#calculoModal{{ forloop.counter }}').modal('show')">Simular investimento</button>
                 <button type="button" class="btn btn-outline-danger btn-sm" onclick="$('#exampleModal{{ forloop.counter }}').modal('show')">Excluir</button>
               </div>
             </td>
@@ -81,6 +82,32 @@
             <a href="{% url 'excluir' projeto.id %}">
               <button type="button" class="btn btn-danger">Excluir</button>
             </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="calculoModal{{ forloop.counter }}" tabindex="-1" role="dialog" aria-labelledby="calculoModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Cálculo de retorno do investimento</h5>
+          </div>
+          <div class="modal-body">
+              <input type="hidden" value="{{ projeto.risco }}" name="risco">
+              <label for="exampleInputEmail1">Valor total do investimento</label>
+              <div class="input-group mt-1">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">R$</span>
+                </div>
+                <input type="text" class="form-control" placeholder="250000,50" name="investimento" required>
+              </div>
+              <p class="mt-2 text-secondary">Por favor, clique no botão abaixo para realizar o cálculo de retorno do investimento</p>
+              <button class="btn btn-primary" value="{{ projeto.valor }}" name="calcular">Calcular</button>
+              <p class="mt-3 bg-light text-dark rounded">Retorno do investimento: R$<span id="retornoInvestimento{{ forloop.counter }}"></span></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="$('#calculoModal{{ forloop.counter }}').modal('hide')">Fechar</button>
           </div>
         </div>
       </div>
