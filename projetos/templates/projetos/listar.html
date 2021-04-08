@@ -22,9 +22,12 @@
     <div class="container">
       <h1 class="mt-4">Projetos</h1>
       <p class="lead">Listagem de projetos do Grupo Lorem Ipsum Inc.</p>
-      <div class="d-flex justify-content-end mb-4">
+      <div class="mb-4">
         <a href="{% url 'cadastrar' %}">
-          <button type="button" class="btn btn-primary" name="button">Cadastrar projeto</button>
+          <button type="button" class="btn btn-primary mr-4" name="button">Cadastrar projeto</button>
+        </a>
+        <a href="{% url 'participante_cadastrar' %}">
+          <button type="button" class="btn btn-secondary" name="button">Cadastrar participante</button>
         </a>
       </div>
       <table class="table table-borderless">

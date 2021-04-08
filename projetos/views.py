@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from .models import Projeto
+from .models import Projeto, Participante
 
 from datetime import datetime
 
@@ -63,3 +63,25 @@ def excluir(request, projeto_id):
     projeto.delete()
 
     return redirect('listar')
+
+def participante_cadastrar(request):
+    if request.method == 'GET':
+        lista_projeto = Projeto.objects.all().order_by('nome')
+
+        context = {
+            'lista_projeto': lista_projeto,
+        }
+
+        return render(request, 'projetos/participante_cadastrar.html', context)
+    elif request.method == 'POST':
+        data = request.POST.dict()
+
+        nome = data['nome']
+        projeto = data['projeto']
+
+        if (projeto != 0):
+            participante = Participante(nome=nome, projeto_vinculado_id=projeto)
+        else:
+            participante = Participante(nome=nome)
+
+        return redirect('listar')

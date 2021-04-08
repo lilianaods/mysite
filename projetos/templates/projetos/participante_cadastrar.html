@@ -1,0 +1,64 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Cadastrar participante | Lorem Ipsum Inc</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  </head>
+
+  <body class="bg-light">
+
+    <div class="container">
+      <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="{% static 'projetos/img/undraw_share_link_qtxe.svg' %}" alt="" width="175" height="175">
+        <h2>Cadastrar participante</h2>
+      </div>
+
+      <div class="row justify-content-md-center">
+        <div class="col-md-8">
+          <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="address">Nome</label>
+              <input type="text" class="form-control" id="nome" placeholder="Nome do participante" name="nome" required>
+              <div class="invalid-feedback">
+                Por favor, dê um nome ao participante.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="address">Projeto</label>
+              <select class="form-select" aria-label="Default select example" name="projeto">
+                <option selected>Escolha um projeto</option>
+                {% for projeto in lista_projeto %}
+                <option value={{ projeto.id }}>{{ projeto.nome }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div>
+              <button class="btn btn-primary mr-3" type="submit">Cadastrar</button>
+              <a href="{% url 'listar' %}">
+                <button class="btn btn-secondary" type="button">Voltar</button>
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; Lorem Ipsum Inc.</p>
+      </footer>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}">
+  </body>
+</html>

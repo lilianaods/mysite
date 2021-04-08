@@ -17,4 +17,5 @@ class Projeto(models.Model):
 
 class Participante(models.Model):
     nome = models.CharField(max_length=200)
-    projeto_vinculado = models.ForeignKey(Projeto, on_delete=models.PROTECT)
+    # O participante pode nao estar vinculado a um projeto
+    projeto_vinculado = models.ForeignKey(Projeto, on_delete=models.PROTECT, blank=True, null=True)
