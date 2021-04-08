@@ -52,7 +52,7 @@
             <td>{{ projeto.data_de_termino|date:"d/m/Y" }}</td>
             <td>R${{ projeto.valor }}</td>
             <td>{{ projeto.get_risco_display }}</td>
-            <td>0</td>
+            <td>{{ projeto.numero_de_participantes }}</td>
             <td>
               <div class="btn-group" role="group" aria-label="Basic example">
                 <a href="{% url 'editar' projeto.id %}">

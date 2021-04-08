@@ -37,7 +37,7 @@
             <div class="mb-3">
               <label for="address">Projeto</label>
               <select class="form-select" aria-label="Default select example" name="projeto">
-                <option selected>Escolha um projeto</option>
+                <option value="0" selected>Escolha um projeto</option>
                 {% for projeto in lista_projeto %}
                 <option value={{ projeto.id }}>{{ projeto.nome }}</option>
                 {% endfor %}

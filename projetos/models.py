@@ -15,6 +15,11 @@ class Projeto(models.Model):
     def __str__(self):
         return '%s' % (self.nome)
 
+    @property
+    def numero_de_participantes(self):
+        # Retorna o numero de participantes vinculados ao projeto
+        return Participante.objects.filter(projeto_vinculado=self).count()
+
 class Participante(models.Model):
     nome = models.CharField(max_length=200)
     # O participante pode nao estar vinculado a um projeto

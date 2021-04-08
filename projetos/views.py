@@ -84,4 +84,6 @@ def participante_cadastrar(request):
         else:
             participante = Participante(nome=nome)
 
+        participante.save()
+        
         return redirect('listar')
