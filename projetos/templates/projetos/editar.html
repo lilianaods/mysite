@@ -25,10 +25,11 @@
 
       <div class="row justify-content-md-center">
         <div class="col-md-8">
-          <form>
+          <form method="post">
+            {% csrf_token %}
             <div class="mb-3">
               <label for="address">Nome</label>
-              <input type="text" class="form-control" id="nome" placeholder="Nome do projeto" value={{ projeto.nome }} required>
+              <input type="text" class="form-control" id="nome" placeholder="Nome do projeto" value={{ projeto.nome }} name="nome" required>
               <div class="invalid-feedback">
                 Por favor, dê um nome ao projeto.
               </div>
@@ -36,11 +37,11 @@
             <div class="row mb-3">
               <div class="col">
                 <label for="example-date-input">Data de início</label>
-                <input class="form-control" type="date" value={{ projeto.data_de_inicio|date:"Y-m-d"}} required>
+                <input class="form-control" type="date" value={{ projeto.data_de_inicio|date:"Y-m-d"}} name="data_de_inicio" required>
               </div>
               <div class="col">
                 <label for="example-date-input">Data de término</label>
-                <input class="form-control" type="date" value={{ projeto.data_de_termino|date:"Y-m-d"}} required>
+                <input class="form-control" type="date" value={{ projeto.data_de_termino|date:"Y-m-d"}} name="data_de_termino" required>
               </div>
             </div>
             <div class="mb-3">
@@ -49,13 +50,13 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">R$</span>
               </div>
-              <input type="text" class="form-control" placeholder="1000,00" value={{ projeto.valor }} required>
+              <input type="number" class="form-control" value={{ valor }} name="valor" required>
             </div>
             </div>
             <div class="row">
               <div class="mb-3">
                 <label for="country">Risco</label>
-                <select class="custom-select d-block w-100" id="risco" required>
+                <select class="custom-select d-block w-100" name="risco" required>
                   <option {% if projeto.risco == 0 %} selected {% endif %} value="0">Baixo</option>
                   <option {% if projeto.risco == 1 %} selected {% endif %} value="1">Médio</option>
                   <option {% if projeto.risco == 2 %} selected {% endif %} value="2">Alto</option>

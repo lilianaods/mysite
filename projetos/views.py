@@ -17,7 +17,28 @@ def listar(request):
 
 def editar(request, projeto_id):
     projeto = get_object_or_404(Projeto, pk=projeto_id)
-    return render(request, 'projetos/editar.html', {'projeto': projeto})
+
+    if request.method == 'GET':
+        return render(request, 'projetos/editar.html', {'projeto': projeto, 'valor': str(projeto.valor)})
+    elif request.method == 'POST':
+        data = request.POST.dict()
+
+        nome = data['nome']
+        data_de_inicio = datetime.strptime(data['data_de_inicio'], '%Y-%m-%d')
+        data_de_termino = datetime.strptime(data['data_de_termino'], '%Y-%m-%d')
+        valor = data['valor']
+        risco = data['risco']
+
+        projeto.nome = nome;
+        projeto.data_de_inicio = data_de_inicio;
+        projeto.data_de_termino = data_de_termino;
+        projeto.valor = valor;
+        projeto.risco = risco;
+
+        projeto.save()
+
+        return redirect('listar')
+
 
 def cadastrar(request):
     if request.method == 'GET':
