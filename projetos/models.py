@@ -9,7 +9,7 @@ class Projeto(models.Model):
     nome = models.CharField(max_length=200)
     data_de_inicio = models.DateField('Data de início')
     data_de_termino = models.DateField('Data de término')
-    valor = models.DecimalField('Valor' , max_digits=15, decimal_places=2)
+    valor = models.IntegerField('Valor')
     risco = models.IntegerField(default=Risco.BAIXO, choices=Risco.choices)
 
     def __str__(self):
