@@ -1,0 +1,92 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Projetos | Lorem Ipsum Inc</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <script src="{% static 'jquery/jquery-1.11.3.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.js' %}"></script>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 class="mt-4">Projetos</h1>
+      <p class="lead">Listagem de projetos do Grupo Lorem Ipsum Inc.</p>
+      <div class="d-flex justify-content-end mb-4">
+        <a href="{% url 'cadastrar' %}">
+          <button type="button" class="btn btn-outline-primary" name="button">Cadastrar projeto</button>
+        </a>
+      </div>
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Data de início</th>
+            <th scope="col">Data de término</th>
+            <th scope="col">Valor</th>
+            <th scope="col">Risco</th>
+            <th scope="col">Participantes</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for projeto in lista_projeto %}
+          <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ projeto.nome }}</td>
+            <td>{{ projeto.data_de_inicio|date:"d/m/Y"}}</td>
+            <td>{{ projeto.data_de_termino|date:"d/m/Y" }}</td>
+            <td>{{ projeto.valor }}</td>
+            <td>{{ projeto.get_risco_display }}</td>
+            <td>0</td>
+            <td>
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <a href="{% url 'editar' projeto.id %}">
+                  <button type="button" class="btn btn-outline-primary btn-sm">Editar</button>
+                </a>
+                <button type="button" class="btn btn-outline-primary btn-sm">Simular investimento</button>
+                <button type="button" class="btn btn-outline-danger btn-sm">Excluir</button>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+    </div> <!-- /container -->
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" onclick="$('#exampleModal').modal('show')">
+      Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Exclusão</h5>
+          </div>
+          <div class="modal-body">
+            <p>Deseja excluir o projeto?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="$('#exampleModal').modal('hide')">Fechar</button>
+            <button type="button" class="btn btn-danger">Excluir</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

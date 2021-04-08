@@ -1,0 +1,38 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{% static 'projetos/css/cover.css' %}" rel="stylesheet">
+    <title>Projetos | Lorem Ipsum Inc</title>
+  </head>
+  <body>
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+      <header class="masthead mb-auto">
+      </header>
+
+      <main role="main" class="inner cover">
+        <h1 class="cover-heading">Projetos do Grupo Lorem Ipsum Inc.</h1>
+        <p class="lead">Sistema para gerência de projetos. Cadastro, monitoramento do tempo de duração e simulação de retorno do investimento.</p>
+        <p class="lead">
+          <a href="{% url 'listar' %}" class="btn btn-lg btn-secondary">Acessar projetos</a>
+        </p>
+      </main>
+
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+        </div>
+      </footer>
+    </div>
+  </body>
+    <!-- Optional JavaScript; choose one of the two! -->
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}">
+</html>

@@ -1,0 +1,83 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Editar projeto | Lorem Ipsum Inc</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  </head>
+
+  <body class="bg-light">
+
+    <div class="container">
+      <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="{% static 'projetos/img/undraw_text_field_htlv.svg' %}" alt="" width="100" height="100">
+        <h2>Editar projeto</h2>
+      </div>
+
+      <div class="row justify-content-md-center">
+        <div class="col-md-8">
+          <form>
+            <div class="mb-3">
+              <label for="address">Nome</label>
+              <input type="text" class="form-control" id="nome" placeholder="Nome do projeto" value={{ projeto.nome }} required>
+              <div class="invalid-feedback">
+                Por favor, dê um nome ao projeto.
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col">
+                <label for="example-date-input">Data de início</label>
+                <input class="form-control" type="date" value={{ projeto.data_de_inicio|date:"Y-m-d"}} required>
+              </div>
+              <div class="col">
+                <label for="example-date-input">Data de término</label>
+                <input class="form-control" type="date" value={{ projeto.data_de_termino|date:"Y-m-d"}} required>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="address">Valor</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">R$</span>
+              </div>
+              <input type="text" class="form-control" placeholder="1000,00" value={{ projeto.valor }} required>
+            </div>
+            </div>
+            <div class="row">
+              <div class="mb-3">
+                <label for="country">Risco</label>
+                <select class="custom-select d-block w-100" id="risco" required>
+                  <option {% if projeto.risco == 0 %} selected {% endif %} value="0">Baixo</option>
+                  <option {% if projeto.risco == 1 %} selected {% endif %} value="1">Médio</option>
+                  <option {% if projeto.risco == 2 %} selected {% endif %} value="2">Alto</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <button class="btn btn-primary mr-3" type="submit">Salvar</button>
+              <a href="{% url 'listar' %}">
+                <button class="btn btn-secondary" type="button">Voltar</button>
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; Lorem Ipsum Inc.</p>
+      </footer>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}">
+  </body>
+</html>
