@@ -56,3 +56,10 @@ def cadastrar(request):
         projeto.save()
 
         return redirect('listar')
+
+def excluir(request, projeto_id):
+    projeto = get_object_or_404(Projeto, pk=projeto_id)
+
+    projeto.delete()
+
+    return redirect('listar')

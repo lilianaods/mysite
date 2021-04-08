@@ -50,7 +50,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">R$</span>
               </div>
-              <input type="number" class="form-control" value={{ valor }} name="valor" required>
+              <input type="number" class="form-control" value={{ valor }} pattern="^\d+\,\d{2}$" name="valor" required>
             </div>
             </div>
             <div class="row">

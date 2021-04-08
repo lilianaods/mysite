@@ -12,10 +12,9 @@
 
     <!-- Bootstrap CSS -->
     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- JavaScript -->
     <script src="{% static 'jquery/jquery-1.11.3.min.js' %}"></script>
     <script src="{% static 'bootstrap/js/bootstrap.bundle.js' %}"></script>
-    <!-- Optional JavaScript; choose one of the two! -->
-
   </head>
 
   <body>
@@ -56,7 +55,7 @@
                   <button type="button" class="btn btn-outline-primary btn-sm">Editar</button>
                 </a>
                 <button type="button" class="btn btn-outline-primary btn-sm">Simular investimento</button>
-                <button type="button" class="btn btn-outline-danger btn-sm">Excluir</button>
+                <button type="button" class="btn btn-outline-danger btn-sm" onclick="$('#exampleModal{{ forloop.counter }}').modal('show')">Excluir</button>
               </div>
             </td>
           </tr>
@@ -66,27 +65,26 @@
 
     </div> <!-- /container -->
 
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" onclick="$('#exampleModal').modal('show')">
-      Launch demo modal
-    </button>
-
+    {% for projeto in lista_projeto %}
     <!-- Modal -->
-    <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal" id="exampleModal{{ forloop.counter }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Exclusão</h5>
           </div>
           <div class="modal-body">
-            <p>Deseja excluir o projeto?</p>
+            <p>Deseja excluir o projeto {{ projeto.nome }}?</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" onclick="$('#exampleModal').modal('hide')">Fechar</button>
-            <button type="button" class="btn btn-danger">Excluir</button>
+            <button type="button" class="btn btn-secondary" onclick="$('#exampleModal{{ forloop.counter }}').modal('hide')">Fechar</button>
+            <a href="{% url 'excluir' projeto.id %}">
+              <button type="button" class="btn btn-danger">Excluir</button>
+            </a>
           </div>
         </div>
       </div>
     </div>
+    {% endfor %}
   </body>
 </html>
